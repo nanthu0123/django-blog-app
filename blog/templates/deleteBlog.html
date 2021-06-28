@@ -1,0 +1,25 @@
+{%extends 'base.html'%}
+{%block content%}
+
+{%if request.method == "POST"%}
+<div class="d-flex justify-content-center mt-4">
+    <div class="alert alert-success w-50" role="alert">
+        <div class="bd-highlight">{{message}}</div>
+        <a href="{%url 'home'%}" class="btn btn-success mt-2">Back to Home</a>
+    </div>
+</div>
+{%else%}
+
+
+<div class="d-flex justify-content-center mt-4">
+    <div class="alert alert-warning w-50" role="alert">
+        <div class="bd-highlight">Are you sure? do you want to delete this blog post?</div>
+        <form method="POST">
+            {%csrf_token%}
+            <input type="submit" class="btn btn-danger mr-2 mt-2" value="Yes">
+            <a href="{%url 'home'%}" class="btn btn-success mt-2">No</a>
+        </form>
+    </div>
+</div>
+{%endif%}
+{%endblock content%}

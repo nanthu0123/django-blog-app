@@ -1,0 +1,48 @@
+{%extends 'base.html'%}
+
+{%block content%}
+<div class="d-flex justify-content-center">
+    <form method="post">
+        {%csrf_token%}
+        <div class="row my-4" style="width: 800px;">
+            <div class="col-md-2">
+                <label for="search" class="form-label">Search Blog</label>
+
+            </div>
+            <div class="col-md-4">
+                <input type="text" class="form-control w-100" name="BlogTitle" id="search"
+                    placeholder="Enter Blog Title Here...">
+
+            </div>
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </div>
+    </form>
+</div>
+{%if blogData%}
+{%for data in blogData%}
+
+<div class="jumbotron">
+    <h2>{{data.Title}} </h2>
+    <p class="lead">{{data.Description}} </p>
+    <a href="{{data.ReferenceLink}}">{{data.ReferenceLink}}</a><br>
+    <div class="d-flex">
+        <div class="justify-content-start mr-4">Author : {{data.Author}}</div>
+        <div class="justify-content-end">Updated on : {{data.CreatedDate}}</div>
+    </div>
+
+</div>
+{%endfor%}
+{%endif%}
+
+{%if message%}
+<div class="d-flex justify-content-center">
+    <div class="alert alert-warning w-50" role="alert">
+        <div class="text-centre">{{message}}</div>
+    </div>
+</div>
+{%endif%}
+
+
+{%endblock content%}

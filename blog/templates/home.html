@@ -1,0 +1,33 @@
+{%extends 'base.html'%}
+
+{%block content%}
+
+{%if message%}
+<div class="d-flex justify-content-center">
+    <div class="alert alert-warning w-50 mt-4" role="alert">
+        <div class="text-centre">{{message}}</div>
+    </div>
+</div>
+{%endif%}
+
+{%if blogData%}
+{%for data in blogData%}
+<div class="jumbotron">
+    <div class="d-flex bd-highlight">
+        <h2 class="bd-highlight">{{data.Title}} </h2>
+        <div class="ml-auto p-2 bd-highlight">
+            <a class="btn btn-primary text-light" href="{%url 'updateBlog' data.Id%}">Update</a>
+            <a class="btn btn-danger text-light" href="{%url 'deleteBlog' data.Id%}">Delete</a>
+        </div>
+    </div>
+
+    <p class="lead">{{data.Description}} </p>
+    <a href="{{data.ReferenceLink}}">{{data.ReferenceLink}}</a><br>
+    <div class="d-flex mt-2">
+        <div class="justify-content-start mr-4">Author : {{data.Author}}</div>
+        <div class="justify-content-end">Updated on : {{data.CreatedDate}}</div>
+    </div>
+</div>
+{%endfor%}
+{%endif%}
+{%endblock content%}
